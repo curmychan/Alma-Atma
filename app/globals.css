@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  NOTE: "The Season" is not bundled by default.
+  To use the exact brand font, add font files to /public/fonts (e.g. TheSeason.woff2)
+  and update the @font-face below.
+*/
+@font-face {
+  font-family: "The Season";
+  src: local("The Season");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root{
+  --font-heading: "The Season";
+  --font-body: "Roboto";
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  font-family: var(--font-body);
+  background: #FFFFFF;
+  color: #014750;
+}
+
+::selection{
+  background: #D2FEE1;
+  color: #014750;
+}
+
+a{
+  text-underline-offset: 3px;
+}
