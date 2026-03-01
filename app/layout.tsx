@@ -1,46 +1,39 @@
+// app/layout.tsx
+import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
-import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { site } from "@/lib/site";
-import { Analytics } from "@vercel/analytics/react";
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
-  variable: "--font-body"
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
   title: {
     default: "Alma Atma Network",
-    template: "%s | Alma Atma Network"
+    template: "%s | Alma Atma Network",
   },
-  description: site.description,
-  openGraph: {
-    title: "Alma Atma Network",
-    description: site.description,
-    url: site.url,
-    siteName: "Alma Atma Network",
-    type: "website",
-    images: [{ url: "/favicon.png", width: 512, height: 512, alt: "Alma Atma Network logo" }]
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.png"
-  }
+  description:
+    "Alma Atma Network empowers late-arrival, first-generation undergraduates through mentorship and access to professional communities.",
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : undefined,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={roboto.variable}>
-      <body>
+      <body className="min-h-screen bg-white text-slate-900 antialiased">
         <Header />
-        <main>{children}</main>
+        <main className="mx-auto w-full max-w-6xl px-4 py-8">{children}</main>
         <Footer />
-        <Analytics />
       </body>
     </html>
   );
